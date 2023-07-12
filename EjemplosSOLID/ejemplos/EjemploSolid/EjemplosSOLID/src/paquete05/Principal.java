@@ -17,9 +17,10 @@ public class Principal {
         ¿Qué se puede plantear?
         */
         try {
-            MenorEdad menor = new MenorEdad("Felipe");
+            MayorEdad mayor = new MayorEdad("Carlos", "11101102145");
+            MenorEdad menor = new MenorEdad("Felipe", mayor);
             System.out.printf("Nombre:%s - Tarjeta:%s\n",
-                    menor.obtenerNombre(), menor.obtenerTarjeta());
+                    menor.obtenerNombre(), menor.obtenerRepresentante().obtenerTarjeta());
         } catch (Exception e) {
             System.out.println(e);
         }

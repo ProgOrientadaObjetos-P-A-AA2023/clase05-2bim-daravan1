@@ -9,16 +9,20 @@ package paquete05;
  *
  * @author reroes
  */
-public class MenorEdad extends Persona{
+public class MenorEdad extends Persona {
+
+    private MayorEdad padre;
     
-    public MenorEdad(String n){
-        super(n, null);
+    public MenorEdad(String n, MayorEdad p) {
+        padre = p;
     }
-    
-    @Override
-    public String obtenerTarjeta(){
-        throw new RuntimeException("un niño no tiene tarjeta");
+
+    public void establecerRepresentante(MayorEdad m) {
+        padre = m;
     }
-    
-    
+
+    public MayorEdad obtenerRepresentante() {
+        return padre;
+    }
+
 }
