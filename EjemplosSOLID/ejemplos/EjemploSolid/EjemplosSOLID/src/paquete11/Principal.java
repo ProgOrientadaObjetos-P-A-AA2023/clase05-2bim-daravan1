@@ -3,10 +3,10 @@
  * D - Dependency inversion principle (Principio de inversión de dependencias)
  */
 package paquete11;
-
 public class Principal {
+
     public static void main(String[] args) {
-        
+
         /*
         Usar el txt llamado usuarios.txt; por cada línea del archivo
         crer un API en función de su servicio; además el API ahora genera
@@ -15,8 +15,11 @@ public class Principal {
         Random); la url final debe contener el tipo de servicio y el user
         Por cada objeto de tipo GeneradoPelicula presentar la información 
         a través de un toString
-        */
-        
-        
+         */
+      
+        String nombreArchivo = "usuarios.txt";
+        LecturaUsuarios lectura = new LecturaUsuarios(nombreArchivo);
+        lectura.establecerLista();
+        System.out.println(lectura);
     }
 }

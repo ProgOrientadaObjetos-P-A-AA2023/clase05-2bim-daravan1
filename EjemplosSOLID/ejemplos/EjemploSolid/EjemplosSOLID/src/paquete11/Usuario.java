@@ -6,10 +6,10 @@ package paquete11;
 
 /**
  *
- * @author SALA H
+ * @author darav
  */
 public class Usuario {
-    
+
     String nombre;
     String tipo;
 
@@ -18,22 +18,16 @@ public class Usuario {
         tipo = t;
     }
 
+    public void establecerTipo(String t) {
+        tipo = t;
+    }
+    public void establecerNombre(String n) {
+        nombre = n;
+    }
     public String obtenerNombre() {
         return nombre;
     }
-
-    public void establecerNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String  obtenerTipo() {
+    public String obtenerTipo() {
         return tipo;
     }
-
-    public void establecerTipo(String tipo) {
-        this.tipo = tipo;
-    }
-    
-    
-    
 }

@@ -12,8 +12,10 @@ package paquete05;
 public class MenorEdad extends Persona {
 
     private MayorEdad padre;
+
     
     public MenorEdad(String n, MayorEdad p) {
+        super(n);
         padre = p;
     }
 

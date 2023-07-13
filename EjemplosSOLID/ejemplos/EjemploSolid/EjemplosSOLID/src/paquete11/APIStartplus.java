@@ -8,13 +8,13 @@ package paquete11;
  *
  * @author SALA H
  */
-public class APIStartplus implements APIMovie{
+public class APIStartplus implements APIMovie {
 
     private String apiKey;
 
     @Override
-    public void establecerApiKey(String ak) {
-        apiKey = ak + "STARPLUSs23264565";
+    public void establecerApiKey() {
+        apiKey = String.format("%d", ((int) (Math.random() * 100) + 1));
     }
 
     @Override

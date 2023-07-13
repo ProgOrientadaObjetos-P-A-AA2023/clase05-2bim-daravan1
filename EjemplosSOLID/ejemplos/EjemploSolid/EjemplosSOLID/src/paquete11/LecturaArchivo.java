@@ -6,34 +6,34 @@ package paquete11;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  *
- * @author SALA H
+ * @author darav
  */
-public class LecturaUsuarios {
+    public final class LecturaArchivo {
 
     private Scanner entrada;
     private String nombreArchivo;
     private String rutaArchivo;
-    private ArrayList<Usuario> lista;
+    private ArrayList<GeneradorPelicula> lista;
 
-    public LecturaUsuarios(String n) {
+    public LecturaArchivo(String n) {
         nombreArchivo = n;
-        rutaArchivo = String.format("data/%s",
-                nombreArchivo);
 
+        rutaArchivo = String.format("datos/%s", obtenerNombreArchivo());
         File f = new File(rutaArchivo);
         if (f.exists()) {
             try {
                 entrada = new Scanner(new File(rutaArchivo));
-            } catch (FileNotFoundException e) {
+            } // fin de try
+            catch (FileNotFoundException e) {
                 System.err.println("Error al leer del archivo: " + e);
-            }
+
+            } // fin de catch
         }
     }
 
@@ -42,8 +42,8 @@ public class LecturaUsuarios {
     }
 
     public void establecerRutaArchivo() {
-        rutaArchivo = String.format("data/%s.txt",
-                obtenerNombreArchivo());
+        rutaArchivo = String.format("datos/%s.txt",
+                obtenerNombreArchivo());;
     }
 
     public String obtenerNombreArchivo() {
@@ -54,28 +54,31 @@ public class LecturaUsuarios {
         return rutaArchivo;
     }
 
+   
     public void establecerLista() {
         lista = new ArrayList<>();
-
         File f = new File(rutaArchivo);
 
         if (f.exists()) {
 
             while (entrada.hasNext()) {
+
                 String linea = entrada.nextLine();
 
                 ArrayList<String> linea_partes = new ArrayList<>(
-                        Arrays.asList(linea.split(";"))
-                );
-                Usuario p = new Usuario(linea_partes.get(0),
-                        linea_partes.get(1));
-                lista.add(p);
+                        Arrays.asList(linea.split(";")));
 
-            } // fin de while
+                GeneradorPelicula generador = new GeneradorPelicula();
+                generador.establecerUrl(linea_partes.get(1));
+                generador.establecerUser(linea_partes.get(2));
+                lista.add(generador);
+
+            }
         }
     }
 
-    public ArrayList<Usuario> obtenerLista() {
+    public ArrayList<GeneradorPelicula> obtenerLista() {
+
         return lista;
     }
 
@@ -88,14 +91,13 @@ public class LecturaUsuarios {
 
     @Override
     public String toString() {
-        String cadena = "Lista Usuarios\n";
+        String cadena = "Lista arr\n";
+
         for (int i = 0; i < obtenerLista().size(); i++) {
-            cadena = String.format("%s(%d) %s %s\n", cadena,
-                    i + 1,
-                    obtenerLista().get(i).obtenerNombre(),
-                    obtenerLista().get(i).obtenerTipo());
+            cadena = String.format("%s %s\n", cadena,
+                    obtenerLista().get(i).obtenerUrl());
         }
+
         return cadena;
     }
-
 }

@@ -11,8 +11,8 @@ public class APINetflix implements APIMovie{
     private String apiKey;
     
     @Override
-    public void establecerApiKey(String ak){
-        apiKey = ak+"NETFLIX123123";
+    public void establecerApiKey(){
+        apiKey = String.format("%d",((int)(Math.random() * 100) + 1));
     }
     
     @Override

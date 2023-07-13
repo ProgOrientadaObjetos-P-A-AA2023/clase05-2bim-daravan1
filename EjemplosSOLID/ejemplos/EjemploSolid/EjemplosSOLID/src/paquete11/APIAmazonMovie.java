@@ -11,8 +11,8 @@ public class APIAmazonMovie implements APIMovie{
     private String apiKey;
     
     @Override
-    public void establecerApiKey(String ak){
-        apiKey = ak+"AMAZON909090";
+    public void establecerApiKey(){
+        apiKey = String.format("%d",((int)(Math.random() * 100) + 1));
     }
     
     @Override
