@@ -14,7 +14,7 @@ import java.util.Scanner;
  *
  * @author darav
  */
-    public final class LecturaArchivo {
+public final class LecturaArchivo {
 
     private Scanner entrada;
     private String nombreArchivo;
@@ -54,7 +54,6 @@ import java.util.Scanner;
         return rutaArchivo;
     }
 
-   
     public void establecerLista() {
         lista = new ArrayList<>();
         File f = new File(rutaArchivo);
@@ -62,16 +61,67 @@ import java.util.Scanner;
         if (f.exists()) {
 
             while (entrada.hasNext()) {
-
                 String linea = entrada.nextLine();
 
                 ArrayList<String> linea_partes = new ArrayList<>(
                         Arrays.asList(linea.split(";")));
 
-                GeneradorPelicula generador = new GeneradorPelicula();
-                generador.establecerUrl(linea_partes.get(1));
-                generador.establecerUser(linea_partes.get(2));
-                lista.add(generador);
+                GeneradorPelicula p = new GeneradorPelicula();
+
+                if (linea_partes.get(2).equals("Netflix")) {
+                    APINetflix api = new APINetflix();
+                    String tipo = linea_partes.get(2);
+
+                    api.establecerApiKey();
+                    p.establecerTipo(tipo);
+                    p.establecerLlave(api);
+                  
+                    p.establecerUrl();
+                    lista.add(p);
+                }
+
+                if (linea_partes.get(2).equals("Disney")) {
+                    APIDisney api = new APIDisney();
+                    String apiKey = String.format("%s",
+                            linea_partes.get(2));
+                    api.establecerApiKey();
+                    String tipo = linea_partes.get(2);
+
+                    p.establecerLlave(api);
+                    p.establecerTipo(tipo);
+
+                    p.establecerUrl();
+                    lista.add(p);
+                }
+
+                if (linea_partes.get(2).equals("Amazon")) {
+                    APIAmazonMovie api = new APIAmazonMovie();
+                    String apiKey = String.format("%s",
+                            linea_partes.get(2));
+                    api.establecerApiKey();
+
+                    p.establecerLlave(api);
+                    String tipo = linea_partes.get(2);
+
+                    p.establecerTipo(tipo);
+
+                    p.establecerUrl();
+                    lista.add(p);
+                }
+
+                if (linea_partes.get(2).equals("Startplus")) {
+                    APIStartplus api = new APIStartplus();
+                    String apiKey = String.format("%s",
+                            linea_partes.get(2));
+                    api.establecerApiKey();
+                    String tipo = linea_partes.get(2);
+
+                    p.establecerLlave(api);
+                    p.establecerTipo(tipo);
+
+                    p.establecerUrl();
+                    lista.add(p);
+                }
 
             }
         }
@@ -89,15 +139,5 @@ import java.util.Scanner;
 
     }
 
-    @Override
-    public String toString() {
-        String cadena = "Lista arr\n";
-
-        for (int i = 0; i < obtenerLista().size(); i++) {
-            cadena = String.format("%s %s\n", cadena,
-                    obtenerLista().get(i).obtenerUrl());
-        }
-
-        return cadena;
-    }
+  
 }

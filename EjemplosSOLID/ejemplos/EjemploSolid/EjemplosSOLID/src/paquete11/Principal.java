@@ -18,8 +18,11 @@ public class Principal {
          */
       
         String nombreArchivo = "usuarios.txt";
-        LecturaUsuarios lectura = new LecturaUsuarios(nombreArchivo);
+        LecturaArchivo lectura = new LecturaArchivo(nombreArchivo);
         lectura.establecerLista();
-        System.out.println(lectura);
+        GeneradorPelicula pelicula = new GeneradorPelicula();
+        pelicula.establecerLista(lectura.obtenerLista());
+        System.out.println(pelicula);
+        
     }
 }

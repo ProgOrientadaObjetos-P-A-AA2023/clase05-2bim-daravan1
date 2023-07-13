@@ -14,7 +14,7 @@ public class APIStartplus implements APIMovie {
 
     @Override
     public void establecerApiKey() {
-        apiKey = String.format("%d", ((int) (Math.random() * 100) + 1));
+        apiKey = String.format("%d", ((int) (Math.random() * 100000) + 1));
     }
 
     @Override
