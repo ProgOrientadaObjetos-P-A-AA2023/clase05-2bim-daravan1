@@ -8,16 +8,17 @@ package paquete11;
  *
  * @author SALA H
  */
-public class APIDisney implements APIMovie{
-      private String apiKey;
-    
+public class APIDisney implements APIMovie {
+
+    private String apiKey;
+
     @Override
-    public void establecerApiKey(){
-        apiKey = String.format("%d",((int)(Math.random() * 100000) + 1));
+    public void establecerApiKey() {
+        apiKey = String.format("%d", ((int) (Math.random() * 100000) + 1));
     }
-    
+
     @Override
-    public String obtenerApiKey(){
+    public String obtenerApiKey() {
         return apiKey;
     }
 }

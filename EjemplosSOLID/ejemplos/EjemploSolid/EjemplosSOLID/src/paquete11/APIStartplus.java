@@ -8,7 +8,7 @@ package paquete11;
  *
  * @author SALA H
  */
-public class APIStartplus implements APIMovie {
+public class APIStartplus implements APIMovie{
 
     private String apiKey;
 
